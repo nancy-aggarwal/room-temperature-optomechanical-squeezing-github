@@ -1,0 +1,30 @@
+# SR785 Noise Measurement
+#Title: SN_measure/dark_noise
+#Memo: 
+#Instrument ID: Stanford_Research_Systems,SR785,s/n77740,ver220
+#
+#---------- Measurement Parameters ----------
+#Measurement Group: FFT
+#Measurements: FFT 1
+#View: Log Magnitude
+#Unit: Vrms
+#
+#---------- Input Parameters ----------
+#Input Source: Analog
+#Input Mode: Single ended, Single ended
+#Input Grounding: Float, Float
+#Input Coupling: DC, DC
+#Input Range: 34.0dBVpk, -34.0dBVpk
+#Auto Range: Off, Off
+#Auto Range Mode: Up Only, Normal
+#Anti-Aliasing Filter: On, On
+#
+#---------- Measurement Setup ----------
+#Frequency Span: 102400.000000
+#Frequency Resolution: 400
+#Number of Averages: 1000
+#Averaging Mode: RMS
+#Window function: BMH
+#
+#---------- Instrument Data -----------
+## Frequency(Hz) Disp1(Vrms) 

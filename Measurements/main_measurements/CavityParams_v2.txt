@@ -1,0 +1,5 @@
+Visibility = 0.93
+detuning = 0.33
+PCav = 250e-3
+Pickoff_2_R = 3.5e-2
+Loss = 220e-6

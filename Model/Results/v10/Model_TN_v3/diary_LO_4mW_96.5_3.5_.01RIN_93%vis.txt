@@ -1,0 +1,267 @@
+Starting Simulation at 20181221T191634MIT
+LO_4mW_96.5_3.5_.01RIN_93%vis
+96.5-3.5 homodyne, 4mW LO, 93% homodyne visibility,giving 86% homodyne modematching. new measured thermal noise sent on Nov 1 2018,NPRO FR frequency noise, 1% RIN wrt shot nosie,detuning 0.33, loss 210ppm, pcav 230mW
+
+TN_fig = 
+
+  <a href="matlab:helpPopup matlab.ui.Figure" style="font-weight:bold">Figure</a> (1) with properties:
+
+      Number: 1
+        Name: ''
+       Color: [0.9400 0.9400 0.9400]
+    Position: [520 378 560 420]
+       Units: 'pixels'
+
+  Show <a href="matlab:if exist('TN_fig', 'var'), matlab.graphics.internal.getForDisplay('TN_fig', TN_fig, 'matlab.ui.Figure'), else, matlab.graphics.internal.getForDisplay('TN_fig'), end">all properties</a>
+
+
+Pin =
+
+   3.8130e-04
+
+
+CavityPower =
+
+    0.2300
+
+
+PRefl =
+
+   1.9656e-04
+
+
+PTrans =
+
+   5.7500e-05
+
+
+NumSims =
+
+   179
+
+Starting parallel pool (parpool) using the 'local' profile ... connected to 14 workers.
+Elapsed time is 10.019726 seconds.
+Working on iteration 107 of 179
+Working on iteration 106 of 179
+Working on iteration 63 of 179
+Working on iteration 62 of 179
+Working on iteration 36 of 179
+Working on iteration 35 of 179
+Working on iteration 54 of 179
+Working on iteration 53 of 179
+Working on iteration 9 of 179
+Working on iteration 8 of 179
+Working on iteration 80 of 179
+Working on iteration 79 of 179
+Working on iteration 95 of 179
+Working on iteration 94 of 179
+Working on iteration 45 of 179
+Working on iteration 44 of 179
+Working on iteration 72 of 179
+Working on iteration 71 of 179
+Working on iteration 101 of 179
+Working on iteration 100 of 179
+Working on iteration 113 of 179
+Working on iteration 112 of 179
+Working on iteration 18 of 179
+Working on iteration 17 of 179
+Working on iteration 27 of 179
+Working on iteration 26 of 179
+Working on iteration 88 of 179
+Working on iteration 87 of 179
+Working on iteration 52 of 179
+Working on iteration 105 of 179
+Working on iteration 61 of 179
+Working on iteration 43 of 179
+Working on iteration 34 of 179
+Working on iteration 7 of 179
+Working on iteration 111 of 179
+Working on iteration 16 of 179
+Working on iteration 78 of 179
+Working on iteration 86 of 179
+Working on iteration 93 of 179
+Working on iteration 70 of 179
+Working on iteration 99 of 179
+Working on iteration 25 of 179
+Working on iteration 51 of 179
+Working on iteration 104 of 179
+Working on iteration 6 of 179
+Working on iteration 77 of 179
+Working on iteration 60 of 179
+Working on iteration 42 of 179
+Working on iteration 33 of 179
+Working on iteration 15 of 179
+Working on iteration 24 of 179
+Working on iteration 85 of 179
+Working on iteration 92 of 179
+Working on iteration 69 of 179
+Working on iteration 98 of 179
+Working on iteration 110 of 179
+Working on iteration 50 of 179
+Working on iteration 76 of 179
+Working on iteration 103 of 179
+Working on iteration 59 of 179
+Working on iteration 41 of 179
+Working on iteration 5 of 179
+Working on iteration 32 of 179
+Working on iteration 14 of 179
+Working on iteration 23 of 179
+Working on iteration 84 of 179
+Working on iteration 91 of 179
+Working on iteration 68 of 179
+Working on iteration 109 of 179
+Working on iteration 97 of 179
+Working on iteration 49 of 179
+Working on iteration 102 of 179
+Working on iteration 75 of 179
+Working on iteration 58 of 179
+Working on iteration 40 of 179
+Working on iteration 31 of 179
+Working on iteration 4 of 179
+Working on iteration 13 of 179
+Working on iteration 83 of 179
+Working on iteration 108 of 179
+Working on iteration 22 of 179
+Working on iteration 90 of 179
+Working on iteration 67 of 179
+Working on iteration 96 of 179
+Working on iteration 48 of 179
+Working on iteration 74 of 179
+Working on iteration 3 of 179
+Working on iteration 57 of 179
+Working on iteration 39 of 179
+Working on iteration 30 of 179
+Working on iteration 12 of 179
+Working on iteration 82 of 179
+Working on iteration 66 of 179
+Working on iteration 21 of 179
+Working on iteration 89 of 179
+Working on iteration 47 of 179
+Working on iteration 118 of 179
+Working on iteration 117 of 179
+Working on iteration 73 of 179
+Working on iteration 2 of 179
+Working on iteration 56 of 179
+Working on iteration 38 of 179
+Working on iteration 29 of 179
+Working on iteration 11 of 179
+Working on iteration 81 of 179
+Working on iteration 123 of 179
+Working on iteration 122 of 179
+Working on iteration 65 of 179
+Working on iteration 20 of 179
+Working on iteration 127 of 179
+Working on iteration 126 of 179
+Working on iteration 46 of 179
+Working on iteration 116 of 179
+Working on iteration 28 of 179
+Working on iteration 1 of 179
+Working on iteration 55 of 179
+Working on iteration 37 of 179
+Working on iteration 10 of 179
+Working on iteration 64 of 179
+Working on iteration 121 of 179
+Working on iteration 19 of 179
+Working on iteration 131 of 179
+Working on iteration 130 of 179
+Working on iteration 125 of 179
+Working on iteration 115 of 179
+Working on iteration 135 of 179
+Working on iteration 134 of 179
+Working on iteration 139 of 179
+Working on iteration 138 of 179
+Working on iteration 120 of 179
+Working on iteration 129 of 179
+Working on iteration 142 of 179
+Working on iteration 141 of 179
+Working on iteration 124 of 179
+Working on iteration 114 of 179
+Working on iteration 133 of 179
+Working on iteration 145 of 179
+Working on iteration 144 of 179
+Working on iteration 151 of 179
+Working on iteration 150 of 179
+Working on iteration 153 of 179
+Working on iteration 152 of 179
+Working on iteration 148 of 179
+Working on iteration 147 of 179
+Working on iteration 155 of 179
+Working on iteration 154 of 179
+Working on iteration 137 of 179
+Working on iteration 119 of 179
+Working on iteration 157 of 179
+Working on iteration 156 of 179
+Working on iteration 128 of 179
+Working on iteration 159 of 179
+Working on iteration 158 of 179
+Working on iteration 140 of 179
+Working on iteration 132 of 179
+Working on iteration 143 of 179
+Working on iteration 146 of 179
+Working on iteration 136 of 179
+Working on iteration 149 of 179
+Working on iteration 163 of 179
+Working on iteration 162 of 179
+Working on iteration 161 of 179
+Working on iteration 160 of 179
+Working on iteration 165 of 179
+Working on iteration 164 of 179
+Working on iteration 167 of 179
+Working on iteration 166 of 179
+Working on iteration 169 of 179
+Working on iteration 168 of 179
+Working on iteration 175 of 179
+Working on iteration 174 of 179
+Working on iteration 173 of 179
+Working on iteration 172 of 179
+Working on iteration 171 of 179
+Working on iteration 170 of 179
+Working on iteration 177 of 179
+Working on iteration 176 of 179
+Working on iteration 179 of 179
+Working on iteration 178 of 179
+Elapsed time is 135.665862 seconds.
+Plotting Measurement Angle and Detected Power in trans
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Amplitude Noise Sum dB
+Elapsed time is 9.587823 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Amplitude Noise PD1 dB
+Elapsed time is 10.717963 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Vacuum Noise PD2 dB
+Elapsed time is 10.120176 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Vacuum Noise Sum dB
+Elapsed time is 9.681760 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Amplitude Noise PD2 dB
+Elapsed time is 10.255407 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Vacuum Noise PD1 dB
+Elapsed time is 12.636495 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Total Noise PD2 dB
+Elapsed time is 15.240501 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Total Noise Sum dB
+Elapsed time is 7.201981 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Phase Noise Sum dB
+Elapsed time is 15.649155 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Thermal Noise Sum dB
+Elapsed time is 16.369141 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Amplitude Noise Diff dB
+Elapsed time is 6.621508 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Vacuum Noise Diff dB
+Elapsed time is 6.991899 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Total Noise PD1 dB
+Elapsed time is 18.440278 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Phase Noise PD2 dB
+Elapsed time is 21.265092 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Phase Noise PD1 dB
+Elapsed time is 22.958263 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Thermal Noise PD1 dB
+Elapsed time is 23.581317 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Total Noise Diff dB
+Elapsed time is 12.004088 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Thermal Noise PD2 dB
+Elapsed time is 23.318863 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Phase Noise Diff dB
+Elapsed time is 17.126947 seconds.
+Plotting LO 4mW 96.5 3.5 .01RIN 93%vis trans Thermal Noise Diff dB
+Elapsed time is 19.200448 seconds.
+Parallel pool using the 'local' profile is shutting down.
+Elapsed time is 3.703565 seconds.
+done

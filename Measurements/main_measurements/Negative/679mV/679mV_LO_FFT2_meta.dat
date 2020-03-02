@@ -1,0 +1,30 @@
+# SR785 Noise Measurement
+#Title: ../data/Torrey/Squeezing Data/Data/remeasure_quadrature_new_setup/Negative/679mV/679mV_LO_
+#Memo: 
+#Instrument ID: Stanford_Research_Systems,SR785,s/n77740,ver220
+#
+#---------- Measurement Parameters ----------
+#Measurement Group: FFT
+#Measurements: FFT 2
+#View: Log Magnitude
+#Unit: Vrms
+#
+#---------- Input Parameters ----------
+#Input Source: Analog
+#Input Mode: Single ended, Single ended
+#Input Grounding: Float, Float
+#Input Coupling: AC, AC
+#Input Range: -40.0dBVpk, -20.0dBVpk
+#Auto Range: Off, Off
+#Auto Range Mode: Up Only, Normal
+#Anti-Aliasing Filter: On, On
+#
+#---------- Measurement Setup ----------
+#Frequency Span: 102400.000000
+#Frequency Resolution: 800
+#Number of Averages: 5000
+#Averaging Mode: RMS
+#Window function: Hanning
+#
+#---------- Instrument Data -----------
+## Frequency(Hz) Disp1(Vrms) 

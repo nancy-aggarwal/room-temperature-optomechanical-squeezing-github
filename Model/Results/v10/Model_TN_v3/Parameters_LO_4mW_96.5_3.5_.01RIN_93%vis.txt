@@ -1,0 +1,19 @@
+ short memo LO_4mW_96.5_3.5_.01RIN_93%vis
+long memo 96.5-3.5 homodyne, 4mW LO, 93% homodyne visibility,giving 86% homodyne modematching. new measured thermal noise sent on Nov 1 2018,NPRO FR frequency noise, 1% RIN wrt shot nosie,detuning 0.33, loss 210ppm, pcav 230mW
+TimeZone MIT
+
+detuning = 0.33
+T1 = 50 ppm 
+T2 = 250 ppm 
+Loss =   210 ppm 
+Mode Matching Coupling = 0.87 
+Cavity Power = 0.23 W
+Cavity Length = 1e+04 microns
+Input Power = 381 uW
+Temperature = 295 K
+RIN = RIN 1Laser Frequency Noise Fixed to be 80Reflected Power = 197 uW
+TransmitterPower = 57.5 uW
+Total LO Power = 1e+06 uW
+LO Power on PD = 3.5e+04 uW
+LO Mode Matching = 0.8649 
+Dark Noisemeasured dark noise on PDsqz
