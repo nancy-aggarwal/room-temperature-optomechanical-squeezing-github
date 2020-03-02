@@ -8,3 +8,8 @@ desktop.ini
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
 Folder/.ipynb_checkpoints/*.ipynb
+
+# Mat files
+Model/Results/v10/Meas_TN_v3/Optimization_LO_4mW_96.5_3.5_.01RIN_93%vis20181220T135557.mat
+Model/Results/v10/Meas_TN_v3/Optimization_LO_4mW_96.5_3.5_.01RIN_93%vis20181221T174314.mat
+Model/Results/v10/Model_TN_v3/Optimization_LO_4mW_96.5_3.5_.01RIN_93%vis20181221T191938.mat
