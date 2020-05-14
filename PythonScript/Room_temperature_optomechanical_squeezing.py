@@ -6,10 +6,9 @@
 # This is an iPython script written in Jupyter notebook with Python 3 (all this software is open source and can be easily installed on any platform.)
 
 # This notebook imports the measured data as well as the model. The model has been calculated using a full quantum-optics code written in MATLAB, and it is simply imported here.
-#
+# 
 # The notebook then performs all the necessary analysis to produce the plots informative to understand the data:
-#
-#
+# 
 # - Load and display all measurements required to characterise the system (shot noise, dark noise, cavity loop, homodyne loop, optical spring transfer function, various power levels, visibility and PD gains)
 # - Average measured shotnoise to a shot noise level, normalize all measured noises to this level
 # - Load squeezing measurements alongwith respective LO powers. Convert LO powers to quadrature
@@ -24,14 +23,15 @@
 # - Calculate uncertainty in quadrature for correlation calibrated measurements
 # - Perform comparison of correlation-calibrated measurement with shot-noise calibrated measurement
 # - Infer the relative quadrature difference between the two calibrations
-#
+# 
 # Plot everything:
-#
+# 
 # - The quantities obtained after the above steps are then plotted. Most plotting code is self-explanatory.
 # - Some plots are made at a specific quadrature or frequency. This can be changed by changing to a quadrature or frequency of interest.
 # - The plots were exported by the plt.savefig command in each cell for the manuscript and presentations. That command can slow down the computation (because I use a high dpi), so it has been put inside an if statement which is set by the boolean variable called save_figures. Initially, this variable has been set to False.
-#
+# 
 # Enjoy!
+# 
 
 # # Initialize
 
@@ -105,12 +105,12 @@ def phi(CavPower,LOPower,TotalPower,Visibility,DV):
     MM_t = Visibility
     Ecav = np.sqrt(CavPower-DV)
     ETotal = np.sqrt(TotalPower-DV)
-
+    
     LOPower_array = np.atleast_1d(LOPower)
-
+    
     for i in np.arange(len(LOPower_array)):
         if LOPower_array[i]==0:
-            phi_array.append(0)
+            phi_array.append(0)            
         else:
             ELO = np.sqrt(LOPower_array[i]-DV)*MM_t
             costheta = (ETotal**2 - ELO**2 - Ecav**2)/(2*Ecav*ELO)
@@ -120,10 +120,10 @@ def phi(CavPower,LOPower,TotalPower,Visibility,DV):
             E_X = Ecav + ELO*np.cos(theta)
 #             E_Y = ELO*np.sin(theta)*MM_t
 #             E_X = Ecav+ELO*np.cos(theta)*MM_t
-
+    
             phi = np.arctan(E_Y/E_X)
             phi_array.append(phi*180/np.pi)
-    phi_array=np.array(phi_array)
+    phi_array=np.array(phi_array)        
     return phi_array
 # print(phi(np.array(1.29),np.array(.1),np.array(1.1),.95,.7e-3))
 # print(phi(np.array(1.29*.98),np.array(.1*.98),np.array(1.1*.98),.95,.7e-3))
@@ -134,10 +134,10 @@ def phi(CavPower,LOPower,TotalPower,Visibility,DV):
 # In[5]:
 
 
-applyloss = lambda n,loss: (n*(1-loss)+loss) # this function takes a noise in PSD, applies loss, and spits out final PSD.
-# This is valid for use in quantum noise or total noise. Not to be used for individual classical noise components
+applyloss = lambda n,loss: (n*(1-loss)+loss) # this function takes a noise in PSD, applies loss, and spits out final PSD. 
+# This is valid for use in quantum noise or total noise. Not to be used for individual classical noise components 
 
-dBToPSD = lambda ndB:10**(ndB/10)
+dBToPSD = lambda ndB:10**(ndB/10) 
 
 PSDTodB = lambda nPSD: 10*np.log10(nPSD)
 
@@ -165,13 +165,13 @@ TotalPower = 1.1 # power of resultant (E_sqz in Fig 8)
 Visibility = .93 # this goes into the calculation of phi for given power measurements
 DV = 7e-3 # dark volts on PD_sqz
 
-# BS1 is not included in the mode, so it must be added here.
+# BS1 is not included in the mode, so it must be added here. 
 # Since it contributes as a simple loss, it can be added in post-processing of the results from the model.
-BS1_Loss         = 0.15;
+BS1_Loss         = 0.15; 
 
 PD_Transimpedance = 30e3; # Ohms
 PD_Responsivity_with_QE = .742#0.6; # Amps/Watts
-PathEfficiency = .965*.85*.94
+PathEfficiency = .965*.85*.94 
 
 
 # ### Calculate power in $P_S$ and $P_{sqz}$ from PD properties
@@ -301,7 +301,7 @@ print('Average shot noise level for amplitude quadrature measurement (1.29 V DC 
 
 
 # As opposed to all the other noises, RIN was measured in V/rt Hz so we need a shot noise in V/rtHz to normalize RIN
-SN_level_V_per_rtHz = SN_level/np.sqrt(192)
+SN_level_V_per_rtHz = SN_level/np.sqrt(192) 
 print('Average shot noise level ASD: {} V/rtHz'.format(SN_level_V_per_rtHz))
 
 SNdB = PSDTodB((SNdata[:,1]/SN_level)**2)
@@ -356,7 +356,7 @@ for _file_ in list_dir_pos:
     Coherence_filename = Coherence_filename.replace("FFT1","Coherence")
     data_coherence  = np.loadtxt(Coherence_filename)
     if ii == 0:
-        f_meas = data[:,0]
+        f_meas = data[:,0]    
     if LOPower==0:
         data_pos_0deg = data[:,1]*SN_level/SN_level_0
         spec[ii] = data[:,1]*SN_level/SN_level_0 ## amplitude quadrature has a different shot noise
@@ -386,7 +386,7 @@ for i in np.arange(len(list_dir_neg)):
         spec[ii] = data[:,1]
         coherence[ii] = data_coherence[:,1]
         ii+=1
-
+        
 LOPOWER_ARRAY_NEG = np.array(LOPOWER_ARRAY_NEG)
 # print(LOPOWER_ARRAY_NEG)
 
@@ -434,7 +434,7 @@ print("Negative quadratures LO Powers in uW: ",np.around(P_LO*1e6))
 
 # ### Calculate errorbars in the squeezing quadrature inference
 
-# Quadrature angle ranges based off possible PD voltage measurement.
+# Quadrature angle ranges based off possible PD voltage measurement. 
 
 # #### Use uncertainty in cavity power and LO power
 
@@ -455,7 +455,7 @@ LO_power_array = LO_power_sqz_quad*np.arange(1-LO_power_error,1+LO_power_error,L
 w = len(LO_power_array)
 h = len(cav_power_array)
 
-phi_matrix_1 = [[0 for x in range(w)] for y in range(h)]
+phi_matrix_1 = [[0 for x in range(w)] for y in range(h)] 
 
 
 for i in np.arange(len(cav_power_array)):
@@ -531,7 +531,7 @@ for phi_ii in phi_pos:
     w = len(LO_power_array)
     h = len(cav_power_array)
 
-#     phi_matrix_1 = [[0 for x in range(w)] for y in range(h)]
+#     phi_matrix_1 = [[0 for x in range(w)] for y in range(h)] 
 #     for i in np.arange(len(cav_power_array)):
 #         for j in np.arange(len(LO_power_array)):
 #             phi_matrix_1[i][j]=phi(cav_power_array[i],LO_power_array[j],TotalPower,Visibility,DV)[0]
@@ -554,7 +554,7 @@ for phi_ii in phi_pos:
     phi_pos_min.append(np.nanmin(np.array(phi_matrix_2)))
     phi_pos_max.append(np.nanmax(np.array(phi_matrix_2)))
 
-
+    
 plt.figure()
 plt.plot(phi_pos,phi_pos_min-phi_pos,phi_pos,phi_pos_max-phi_pos,marker='.')
 plt.grid()
@@ -579,7 +579,7 @@ spec_sorted=spec_sorted_Volts/SN_level
 
 
 # get feedback noise from coherence data
-Feedback_Noise_meas_PSD = coherence_sorted*spec_sorted**2
+Feedback_Noise_meas_PSD = coherence_sorted*spec_sorted**2 
 
 # This is already normalized because we used normalized spectra.
 
@@ -597,7 +597,7 @@ Feedback_Noise_meas_PSD = coherence_sorted*spec_sorted**2
 
 
 ## Post-note: This method was rejected because it doesn't take into account that feedback noise might be different
-# in ways other than simple scaling. So instead, the coherence measurement at each quadrature is a better way to estimate
+# in ways other than simple scaling. So instead, the coherence measurement at each quadrature is a better way to estimate 
 # feedback noise.
 
 
@@ -645,7 +645,7 @@ for xi in phi_sorted:
 # The important thing is to have the right BS2 reflection, transmission and the right homodyne visibility.
 # The dependence on LO power or LO phase is irrelevant if one is only interested in noise wrt shotnoise.
 
-# Modelfile has the noises calculated by the MATLAB code, Paramsfile is an automatically generated file by the
+# Modelfile has the noises calculated by the MATLAB code, Paramsfile is an automatically generated file by the 
 # MATLAB code to note down all the relevant modeling parameters.
 
 #Modelfile = '../Model/Results/v10/Model_TN_v3_100ppm_loss/Model_Noises_PSD_LO_4mW_96.5_3.5_.01RIN_93%vis_20181221T191221.mat'
@@ -872,12 +872,12 @@ chi_2_cutoff = []
 for L_excess in ExcessLossOptions:
     Total_Model_after_excess_loss_option_PSD = applyloss(Total_Model_afterBS1_Interp_f_interp_phi_PSD,L_excess)+         Feedback_Noise_meas_inbounds_f_PSD + Diff_Phase_Noise_inbounds_f_PSD
 #    Total_Model_final_after_excess_loss_dB = PSDTodB(Total_Model_final_after_excess_loss_PSD)
-
+    
     Meas_PSD = dBToPSD(spec_Inbounds_f)
     error = (Meas_PSD-Total_Model_after_excess_loss_option_PSD)/Meas_PSD
     chi_2_fullrange.append(np.mean(error**2))
     chi_2_cutoff.append(np.mean(error[:,ind_low_cut_off:ind_high_cut_off]**2))
-    i += 1
+    i += 1    
 
 chi_2_fullrange = np.array(chi_2_fullrange)
 chi_2_cutoff = np.array(chi_2_cutoff)
@@ -997,7 +997,7 @@ Sab = cross_amp[:,1] * np.cos(cross_phase[:,1]*np.pi/180) # take the real part w
 # Looking at the meta-data files for cross_amp, pwrspec1, and pwrspec2, one finds that cross_amp and pwrspec2 were measured in rms
 # while pwrspec1 was recorded in Vpk-pk. so we must correct for that by a factor of sqrt(2)**2 in psd for pwrspec1.
 
-Sa = pwr_spec1[:,1]/2
+Sa = pwr_spec1[:,1]/2 
 Sb = pwr_spec2[:,1]
 
 C = Sab/np.sqrt(Sa*Sb)
@@ -1015,7 +1015,7 @@ R_dB = PSDTodB(R)
 
 
 
-# To set up the correlation-calibrated measurement to be close to squeezing quadrature,
+# To set up the correlation-calibrated measurement to be close to squeezing quadrature, 
 # each voltages on one of the photodiodes after the 50/50 beamsplitter were set to be half of,
 # the corresponding voltage for the shotnoise calibrated measurement
 
@@ -1074,7 +1074,7 @@ for phi_ii in correlation_measurement_phi_range:
     error = (correlation_measurement_PSD-SN_calibrated_measurement_at_phi_ii_PSD)/SN_calibrated_measurement_at_phi_ii_PSD
     chi_2_correlation_quadrature_fullrange.append(np.mean(error**2))
     chi_2_correlation_quadrature_cutoff.append(np.mean(error[ind_low_cut_off:ind_high_cut_off]**2))
-
+    
 chi_2_correlation_quadrature_fullrange = np.array(chi_2_correlation_quadrature_fullrange)
 chi_2_correlation_quadrature_cutoff = np.array(chi_2_correlation_quadrature_cutoff)
 
@@ -1372,7 +1372,7 @@ for i in AS_range_ticks:
         AS_tick_labels.append(i)
     else:
         AS_tick_labels.append('')
-
+        
 S_range_contour = np.arange(-1.5,0,0.01)
 S_range_ticks   = np.around(np.arange(-1.5,0,0.1),decimals = 1)
 S_tick_labels = []
@@ -1407,27 +1407,27 @@ plt.xticks(fontsize = 12)
 
 for c in Model_AS_Plot.collections:
     c.set_edgecolor("face") # to remove little white lines at the boundaries of contours
-
+    
 for c in Model_S_Plot.collections:
     c.set_edgecolor("face") # to remove little white lines at the boundaries of contours
 
-cbaxes_AS = fig.add_axes([.92, 0.503, 0.03, 0.37])
-cb_AS = plt.colorbar(Model_AS_Plot, cax = cbaxes_AS,ticks = AS_range_ticks,format='%.0f')
+cbaxes_AS = fig.add_axes([.92, 0.503, 0.03, 0.37]) 
+cb_AS = plt.colorbar(Model_AS_Plot, cax = cbaxes_AS,ticks = AS_range_ticks,format='%.0f')  
 cb_AS.set_ticklabels(AS_tick_labels)
 cb_AS.ax.tick_params(labelsize=12)
 
-cbaxes_S = fig.add_axes([.92, 0.13, 0.03, 0.37])
-cb_S = plt.colorbar(Model_S_Plot, cax = cbaxes_S,ticks = S_range_ticks,format='%.0f')
+cbaxes_S = fig.add_axes([.92, 0.13, 0.03, 0.37]) 
+cb_S = plt.colorbar(Model_S_Plot, cax = cbaxes_S,ticks = S_range_ticks,format='%.0f')  
 cb_S.set_ticklabels(S_tick_labels)
 cb_S.ax.tick_params(labelsize = 12)
 
-# from matplotlib.ticker import LogFormatter
-# formatter = LogFormatter(10, labelOnlyBase=False)
+# from matplotlib.ticker import LogFormatter 
+# formatter = LogFormatter(10, labelOnlyBase=False) 
 # Take spec, phi and freq 0 from previous cells and plot contour plot
 # White contour is 0dB line
-# #
+# # 
 # cmap = plt.cm.bone or pink
-#
+# 
 
 
 if save_figures:
@@ -1470,14 +1470,14 @@ plt.plot(phi_sorted,average_feedback,label='Feedback',linewidth=2.5)
 plt.title('Average in %.1f kHz - %.1f kHz bin' %(f_meas[idx_low]/1000, f_meas[idx_high]/1000));
 plt.ylim([-5, 18])
 #plt.xlim([-45, 60])
-# legend('Unity','Measured noise','ThermalNoise','QuantumNoise','TotalModel','CM AMP');
+# legend('Unity','Measured noise','ThermalNoise','QuantumNoise','TotalModel','CM AMP'); 
 plt.grid(True)
 plt.minorticks_on()
 plt.grid(which='minor',linestyle='--',alpha = 0.3)
 #plt.legend(('Shot noise level','Total measured noise','Total expected noise','Thermal noise','Quantum noise',\
-#            'Differential phase noise','Feedback noise'),loc=[1,0]);
+#            'Differential phase noise','Feedback noise'),loc=[1,0]); 
 
-plt.legend(loc=[.21,0.69],ncol = 2,fontsize = 10,columnspacing = .5);
+plt.legend(loc=[.21,0.69],ncol = 2,fontsize = 10,columnspacing = .5); 
 plt.xlabel('$\phi$ (degrees)')
 plt.ylabel('Noise relative to shot noise (dB)')
 
@@ -1513,9 +1513,9 @@ plt.plot(phi_sorted,Feedback_Noise_final_dB[:,ind_freq],label='Feedback noise')
 plt.title('Frequency = %0.1f  kHz' %(f_meas_Inbounds_f[ind_freq]/1e3));
 plt.ylim([-15, 15])
 #plt.xlim([5,18])
-#legend('Unity','Measured noise','ThermalNoise','QuantumNoise','TotalModel','CM AMP');
+#legend('Unity','Measured noise','ThermalNoise','QuantumNoise','TotalModel','CM AMP'); 
 plt.grid(True)
-plt.legend(prop={'size': 8},ncol=2);
+plt.legend(prop={'size': 8},ncol=2); 
 plt.xlabel('$\phi$ (degrees)')
 plt.ylabel('Noise relative to shot noise (dB)')
 
@@ -1557,8 +1557,8 @@ plt.xlabel('Frequency (kHz)')
 plt.grid(True)
 plt.minorticks_on()
 plt.grid(which='minor',linestyle='--',alpha=0.3)
-# legend('Unity','Measured noise','ThermalNoise','QuantumNoise','TotalModel','CM AMP');
-plt.legend(loc=(0.34,0.22),fontsize = 10);
+# legend('Unity','Measured noise','ThermalNoise','QuantumNoise','TotalModel','CM AMP'); 
+plt.legend(loc=(0.34,0.22),fontsize = 10); 
 plt.ylim([-12, 3])
 
 if save_figures:
@@ -1606,12 +1606,12 @@ plt.xlabel('Frequency (kHz)')
 plt.grid(True)
 plt.minorticks_on()
 plt.grid(which='minor',linestyle='--',alpha=0.5)
-# legend('Unity','Measured noise','ThermalNoise','QuantumNoise','TotalModel','CM AMP');
+# legend('Unity','Measured noise','ThermalNoise','QuantumNoise','TotalModel','CM AMP'); 
 
 ## Recommended ylimits for various quadratures:
 plt.ylim([-1.5, 3]) # 12 degrees (squeezing quadrature)
 
-# plt.ylim([-1.2,4]) # 10 degrees
+# plt.ylim([-1.2,4]) # 10 degrees 
 
 # plt.ylim([-1,8]) # 6 degrees
 
@@ -1637,7 +1637,7 @@ plt.ylim([-1.5, 3]) # 12 degrees (squeezing quadrature)
 
 # plt.ylim([8,16]) # 41 degrees
 
-plt.legend(fontsize=10);
+plt.legend(fontsize=10); 
 
 if save_figures:
     plt.savefig(SaveDirFig+'Condensed_noise_budget_spectra_%0.2fdeg.png'%(phi_sorted[ind_phi_meas]),bbox_inches='tight',dpi=300)
@@ -1678,7 +1678,7 @@ plt.xlabel('Measurement quadrature, (degrees)')
 plt.grid(True)
 plt.minorticks_on()
 plt.grid(which='minor',linestyle='--',alpha=0.4)
-# plt.legend(loc=[0.01,0.1],fontsize=14);
+# plt.legend(loc=[0.01,0.1],fontsize=14); 
 plt.legend(loc=[0.44,0.54])
 
 if save_figures:
@@ -1714,7 +1714,7 @@ plt.xlim([5, 22])
 plt.grid(True)
 plt.minorticks_on()
 plt.grid(which='minor',linestyle='--',alpha=0.4)
-#plt.legend(loc=[0.01,0.1],fontsize=14);
+#plt.legend(loc=[0.01,0.1],fontsize=14); 
 
 if save_figures:
     plt.savefig(SaveDirFig+'McD_multi_freq_zoom.pdf' ,bbox_inches = 'tight',dpi=300)
@@ -1767,7 +1767,7 @@ sn_col = sn_plot[0].get_color()
 plt.plot(f_kHz,np.zeros(len(f_kHz)),linewidth=2,label='Shotnoise average',color=[0,0,.3])
 
 plt.title('Quadrature, $\phi$ = $%0.0f\degree$' %(phi_sorted[ind_phi_meas]))
-# legend('Unity','Measured noise','ThermalNoise','QuantumNoise','TotalModel','CM AMP');
+# legend('Unity','Measured noise','ThermalNoise','QuantumNoise','TotalModel','CM AMP'); 
 plt.xlim([f_interest_low_kHz, f_interest_high_kHz])
 plt.ylabel('Total Noise w.r.t shot noise (dB)')
 plt.xlabel('Frequency (kHz)')
@@ -1778,7 +1778,7 @@ plt.grid(which='minor',linestyle='--',alpha=0.5)
 ## Recommended ylimits for various quadratures:
 plt.ylim([-1, 3]) # 12 degrees (squeezing quadrature)
 
-# plt.ylim([-.7,4]) # 10 degrees
+# plt.ylim([-.7,4]) # 10 degrees 
 
 # plt.ylim([-.5,8]) # 6 degrees
 
@@ -1804,7 +1804,7 @@ plt.ylim([-1, 3]) # 12 degrees (squeezing quadrature)
 
 # plt.ylim([8,16]) # 41 degrees
 
-plt.legend(loc=[0.15,0.6]);
+plt.legend(loc=[0.15,0.6]); 
 
 if save_figures:
     if ind_phi_meas == 6:
@@ -1877,7 +1877,7 @@ for i in AS_range_ticks:
         AS_tick_labels.append(i)
     else:
         AS_tick_labels.append('')
-
+        
 S_range_contour = np.arange(-0.9,0,0.01)
 S_range_ticks   = np.around(np.arange(-0.9,0,0.1),decimals = 1)
 S_tick_labels = []
@@ -1903,11 +1903,11 @@ plt.text(75,-37,'(a)')
 for c in Meas_AS_Plot.collections:
     c.set_edgecolor("face") # to remove little white lines at the boundaries of contours
 for c in Meas_S_Plot.collections:
-    c.set_edgecolor("face") # to remove little white lines at the boundaries of contours
+    c.set_edgecolor("face") # to remove little white lines at the boundaries of contours 
 # another option is to plot both contours multiple times over each  other
 
 cbaxes_AS = fig.add_axes([.92, 0.708, 0.03, 0.17])
-cb_AS = plt.colorbar(Meas_AS_Plot, cax = cbaxes_AS,ticks = AS_range_ticks,format='%.0f')
+cb_AS = plt.colorbar(Meas_AS_Plot, cax = cbaxes_AS,ticks = AS_range_ticks,format='%.0f')  
 cb_AS.set_ticklabels(AS_tick_labels)
 # cb_AS.ax.set_ylabel('(dB)',rotation = 0,labelpad=20)
 cbaxes_S = fig.add_axes([.92, 0.538, 0.03, 0.17])
@@ -1931,24 +1931,24 @@ plt.text(75,-37,'(b)')
 
 for c in Model_AS_Plot.collections:
     c.set_edgecolor("face") # to remove little white lines at the boundaries of contours
-
+    
 for c in Model_S_Plot.collections:
     c.set_edgecolor("face") # to remove little white lines at the boundaries of contours
 
-cbaxes_AS = fig.add_axes([.92, 0.296, 0.03, 0.17])
-cb_AS = plt.colorbar(Model_AS_Plot, cax = cbaxes_AS,ticks = AS_range_ticks,format='%.0f')
+cbaxes_AS = fig.add_axes([.92, 0.296, 0.03, 0.17]) 
+cb_AS = plt.colorbar(Model_AS_Plot, cax = cbaxes_AS,ticks = AS_range_ticks,format='%.0f')  
 cb_AS.set_ticklabels(AS_tick_labels)
 # cb_AS.ax.set_ylabel('(dB)',rotation = 0,labelpad=20)
-cbaxes_S = fig.add_axes([.92, 0.126, 0.03, 0.17])
-cb_S = plt.colorbar(Model_S_Plot, cax = cbaxes_S,ticks = S_range_ticks,format='%.0f')
+cbaxes_S = fig.add_axes([.92, 0.126, 0.03, 0.17]) 
+cb_S = plt.colorbar(Model_S_Plot, cax = cbaxes_S,ticks = S_range_ticks,format='%.0f')  
 cb_S.set_ticklabels(S_tick_labels)
-# from matplotlib.ticker import LogFormatter
-# formatter = LogFormatter(10, labelOnlyBase=False)
+# from matplotlib.ticker import LogFormatter 
+# formatter = LogFormatter(10, labelOnlyBase=False) 
 # Take spec, phi and freq 0 from previous cells and plot contour plot
 # White contour is 0dB line
-# #
+# # 
 # cmap = plt.cm.bone or pink
-#
+# 
 
 if save_figures:
     plt.savefig(SaveDirFig+'3.png', bbox_inches='tight',dpi=300)
@@ -1967,30 +1967,37 @@ if is_script:
 if save_data:
     # Select frequencies
 
-    # Select frequencies
-
     f_export_low_kHz  = f_interest_low_kHz
     f_export_high_kHz = f_interest_high_kHz
     idx_export_low    = (np.abs(f_kHz-f_export_low_kHz)).argmin()
     idx_export_high   = (np.abs(f_kHz-f_export_high_kHz)).argmin()+1 # that's because idex_low:idx_high actually only gives elements from idx_low to idx_high-1
 
     Export_total_measured = np.transpose(spec_Inbounds_f[:,idx_export_low:idx_export_high])
-    Export_total_budgetd = np.transpose(Total_Model_final_dB[:,idx_export_low:idx_export_high])
+    Export_total_budgeted = np.transpose(Total_Model_final_dB[:,idx_export_low:idx_export_high])
     Export_freq = f_kHz[idx_export_low:idx_export_high]
     Export_phi = phi_sorted
 
     Export_Fig_3_a = pd.DataFrame(Export_total_measured, columns = Export_phi, index = Export_freq)
     filename = SaveDirData+'Fig_3a.csv'
     Export_Fig_3_a.to_csv(path_or_buf=filename,index_label='frequency (kHz)\ phi (degrees)')
-
-    Export_Fig_3_b = pd.DataFrame(Export_total_budgetd, columns = Export_phi, index = Export_freq)
+    Fig_3_a = pd.read_csv(filename)
+    
+    Export_Fig_3_b = pd.DataFrame(Export_total_budgeted, columns = Export_phi, index = Export_freq)
     filename = SaveDirData+'Fig_3b.csv'
     Export_Fig_3_b.to_csv(path_or_buf=filename,index_label='frequency (kHz)\ phi (degrees)')
+    Fig_3_b = pd.read_csv(filename)
+    
+    Export_Fig_3_combined = pd.concat([Fig_3_a,Fig_3_b],axis=1,keys=['3a','3b'])
+    filename = SaveDirData + 'Fig_3_combined.csv'
+    Export_Fig_3_combined.to_csv(path_or_buf = filename,index=False)
+    
+    
+    
 
 
 # #### Panel plot of  noise measurements at all quadratures and their respective budgets
 # #### (not in paper)
-#
+# 
 # Each panel has the measurement in color, which is chosen according to the colorbar on the right to represent the quadrature of measurement.
 # The gray curve in each panel is the budgeted noise at that quadrature.
 
@@ -2015,7 +2022,7 @@ N_cols = 2
 N_rows = int((np.size(phi_NB_list)+1)/N_cols)
 
 #values = range(np.size(phi_NB_list))
-jet = cm = plt.get_cmap('jet_r')
+jet = cm = plt.get_cmap('jet_r') 
 cNorm  = colors.Normalize(vmin=np.min(phi_NB_list),vmax = np.max(phi_NB_list))
 scalarMap = cmx.ScalarMappable(norm=cNorm, cmap=jet)
 idx = 0
@@ -2035,7 +2042,7 @@ for phi_NB in phi_NB_list:
     ind_phi_meas = (np.abs(phi_sorted-phi_NB)).argmin() # Grab Indices for plotting measurement at the quadrature phi_NB
 #    ind_phi_model = (np.abs(phi_Model-phi_sorted[ind_phi_meas])).argmin() # Grab Indices for plotting model at the quadrature chosen above
     colorVal = scalarMap.to_rgba(phi_NB)
-    idx = idx +1
+    idx = idx +1 
 #    col = meas_plot[0].get_color()
 #    ax.plot(f_kHz,Total_Model_final_dB[ind_phi_meas,:],\
 #        label='Model at %0.1f deg'%(phi_sorted[ind_phi_meas]),linewidth=2,linestyle='--',color=colorVal)
@@ -2057,7 +2064,7 @@ for phi_NB in phi_NB_list:
         ax.set_xticklabels([])
     else:
         ax.set_xlabel('Frequency (kHz)')
-
+        
 
 cbar = fig.colorbar(scalarMap,ax=axes.ravel().tolist())
 cbar.ax.set_ylabel('$\phi$ (degrees)')
@@ -2069,7 +2076,7 @@ if save_figures:
 
 # #### Panel plot of noise measurements at squeezing quadratures and their respective budgets
 # #### (not in paper)
-#
+# 
 # Each panel has the measurement in color, which is chosen according to the colorbar on the right to represent the quadrature of measurement.
 # The gray curve in each panel is the budgeted noise at that quadrature.
 
@@ -2094,7 +2101,7 @@ N_cols = 2
 N_rows = int((np.size(phi_NB_list)+1)/N_cols)
 
 #values = range(np.size(phi_NB_list))
-jet = cm = plt.get_cmap('jet_r')
+jet = cm = plt.get_cmap('jet_r') 
 cNorm  = colors.Normalize(vmin=np.min(phi_NB_list),vmax = np.max(phi_NB_list))
 scalarMap = cmx.ScalarMappable(norm=cNorm, cmap=jet)
 idx = 0
@@ -2113,7 +2120,7 @@ for phi_NB in phi_NB_list:
     ind_phi_meas = (np.abs(phi_sorted-phi_NB)).argmin() # Grab Indices for plotting measurement at the quadrature phi_NB
 #    ind_phi_model = (np.abs(phi_Model-phi_sorted[ind_phi_meas])).argmin() # Grab Indices for plotting model at the quadrature chosen above
     colorVal = scalarMap.to_rgba(phi_NB)
-    idx = idx +1
+    idx = idx +1 
 #    col = meas_plot[0].get_color()
 #    ax.plot(f_kHz,Total_Model_final_dB[ind_phi_meas,:],\
 #        label='Model at %0.1f deg'%(phi_sorted[ind_phi_meas]),linewidth=2,linestyle='--',color=colorVal)
@@ -2135,11 +2142,11 @@ for phi_NB in phi_NB_list:
         ax.set_xticklabels([])
     else:
         ax.set_xlabel('Frequency (kHz)')
-
+        
 
 cbar = fig.colorbar(scalarMap,ax=axes.ravel().tolist())
 cbar.ax.set_ylabel('$\phi$ (degrees)')
-
+    
 if save_figures:
     plt.savefig(SaveDirFig+'spectra_sqz_phi_with_models_multi_panel.png',bbox_inches='tight',dpi=300)
     plt.savefig(SaveDirFig+'spectra_sqz_phi_with_models_multi_panel.pdf',bbox_inches='tight',dpi=300)
@@ -2197,6 +2204,8 @@ plt.ylabel('Calibrated squeezing (dB)')
 
 # ## Plot again comparing with shotnoise measurement at $\phi_\mathrm{{min}}$
 
+# #### Create Figure 4c for final version of paper
+
 # In[79]:
 
 
@@ -2251,7 +2260,7 @@ if save_data:
     idx_low    = (np.abs(f_correlation_kHz-f_low_kHz)).argmin()
     idx_high   = (np.abs(f_correlation_kHz-f_high_kHz)).argmin()+1 # that's because idex_low:idx_high actually only gives elements from idx_low to idx_high-1
 
-    Export_f_kHz_4b = 1e-3*f_correlation_kHz[idx_low:idx_high]
+    Export_f_kHz_4b = f_correlation_kHz[idx_low:idx_high]
     Export_C_4b = C[idx_low:idx_high]
     Export_4b = pd.DataFrame({'Frequency (kHz)':Export_f_kHz_4b,
                              'C': Export_C_4b})
@@ -2267,8 +2276,6 @@ if save_data:
 
 
 
-# # Create Figure 4c for final version of paper
-
 # ### Export Fig 4c
 
 # In[81]:
@@ -2283,22 +2290,51 @@ if save_data:
     idx_high_kHz   = (np.abs(f_correlation_kHz-f_high_kHz)).argmin()+1 # that's because idex_low:idx_high actually only gives elements from idx_low to idx_high-1
 
     Export_f_kHz_4c = f_correlation_kHz[idx_low_kHz:idx_high_kHz]
-    Export_SN_calibrated = SN_calibrated_measurement_at_fit_quadrature_cutoff_dB[idx_low_kHz:idx_high_kHz]
-    Export_Corr_calibrated = R_dB[idx_low_kHz:idx_high_kHz]
+    Export_SN_calibrated_4c = SN_calibrated_measurement_at_fit_quadrature_cutoff_dB[idx_low_kHz:idx_high_kHz]
+    Export_Corr_calibrated_4c = R_dB[idx_low_kHz:idx_high_kHz]
 
 
     Export_4c = pd.DataFrame({'Frequency (kHz)':Export_f_kHz_4c,
-                             'Shotnoise calibrated squeezing (dB)': Export_SN_calibrated,
-                             'Correlation calibrated squeezing (dB)':Export_Corr_calibrated})
+                             'Shotnoise calibrated squeezing (dB)': Export_SN_calibrated_4c,
+                             'Correlation calibrated squeezing (dB)':Export_Corr_calibrated_4c})
 
     # print(Export_4c)
     filename = SaveDirData+'Fig_4c.csv'
     Export_4c.to_csv(path_or_buf =filename,index=False)
 
 
-# # Create combined Figure 4
+# ### Export Combined datafile for Fig 4
 
 # In[82]:
+
+
+if save_data:
+    # Select frequencies
+
+    f_low_kHz = f_interest_low_kHz
+    f_high_kHz = f_interest_high_kHz
+    idx_low    = (np.abs(f_correlation_kHz-f_low_kHz)).argmin()
+    idx_high   = (np.abs(f_correlation_kHz-f_high_kHz)).argmin()+1 # that's because idex_low:idx_high actually only gives elements from idx_low to idx_high-1
+
+    Export_f_kHz_4_combined = f_correlation_kHz[idx_low:idx_high]
+    Export_C_4_combined = C[idx_low:idx_high]
+    Export_SN_calibrated_4_combined = SN_calibrated_measurement_at_fit_quadrature_cutoff_dB[idx_low_kHz:idx_high_kHz]
+    Export_Corr_calibrated_4_combined = R_dB[idx_low_kHz:idx_high_kHz]
+
+    Export_4_combined = pd.DataFrame({'Frequency (kHz)':Export_f_kHz_4_combined,
+                             'C': Export_C_4b,
+                             'Shotnoise calibrated squeezing (dB)': Export_SN_calibrated_4_combined,
+                             'Correlation calibrated squeezing (dB)':Export_Corr_calibrated_4_combined})
+
+    # print(Export_4b)
+    filename = SaveDirData+'Fig_4_combined.csv'
+    Export_4_combined.to_csv(path_or_buf =filename,index=False)
+    
+
+
+# # Create combined Figure 4
+
+# In[83]:
 
 
 
@@ -2361,3 +2397,7 @@ if is_script:
 
 
 # In[ ]:
+
+
+
+
